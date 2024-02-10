@@ -1,0 +1,17 @@
+<nav>
+	<div class="nav-container">
+		<h3 id="brand">E-Moji</h3>
+	
+		<div class="nav-links">
+			<a class="btn btn-link" href="{% url 'index' %}">Login</a>
+			<a class="btn btn-link" href="{% url 'index' %}">Register</a>
+			<a class="btn btn-link" href="{% url 'index' %}">Home</a>
+		</div>
+		</div>
+</nav>
+
+<script>
+    document.getElementById("brand").onclick = function() {
+        window.location.href = "/"; 
+    };
+</script>

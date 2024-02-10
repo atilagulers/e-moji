@@ -1,0 +1,51 @@
+{% extends "base.html" %} 
+
+{% block body %} 
+		<h2>Restaurants</h2>
+		<div class="restaurant-content-wrapper">
+			<div class="filters-container">
+				<ul>
+					<li>
+						<input type="checkbox" id="checkbox1" name="checkbox1" checked />
+    				<label for="checkbox1">🍔🍔🍔🍔</label>
+					</li>
+					<li>
+						<input type="checkbox" id="checkbox2" name="checkbox2"  />
+    				<label for="checkbox2">🍕🍕🍕🍕</label>
+					</li>
+					<li>
+						<input type="checkbox" id="checkbox3" name="checkbox3"  />
+    				<label for="checkbox3">🍟🍟🍟🍟</label>
+					</li>
+					<li>
+						<input type="checkbox" id="checkbox4" name="checkbox4"  />
+    				<label for="checkbox4">🌮🌮🌮🌮</label>
+					</li>
+				</ul>
+			</div>
+			<div class="restaurant-list">
+				{% for restaurant in restaurants %}
+				<div class="restaurant-card">
+					<img src="https://img.freepik.com/free-photo/big-sandwich-hamburger-with-juicy-beef-burger-cheese-tomato-red-onion-wooden-table_2829-19631.jpg" alt="restaurant-image">
+
+					
+					<div class="restaurant-info">
+						<div>
+							<h3>Restaurant Name</h3>
+							<p>Restaurant Type</p>
+							<p class="restaurant-rating">★★★★☆</p>
+						</div>
+						<div>
+							<p>🕐 Opens at 07:30 AM</p>
+							<p>🏷️ Min. Order: $12 | Delivery Fee: $2</p>
+						</div>
+						<div class="view-button-container">
+							<button class="btn btn-danger">View Menu</button>
+						</div>
+					</div>
+				
+				</div>	
+				{% endfor %}
+			</div>
+		</div>
+{% endblock %}

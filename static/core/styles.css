@@ -1,0 +1,132 @@
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+}
+
+/* common */
+
+#brand {
+  cursor: pointer;
+}
+
+/* navbar */
+
+.nav-container {
+  margin: 12px 24px;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.nav-links button:hover {
+  background-color: #f0f0f0;
+}
+
+/* filters */
+.filters-container {
+  padding: 24px;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.filters-container ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.filters-container ul li {
+  padding: 6px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.filters-container label {
+  margin: 0;
+  padding: 0;
+}
+
+/* restaurant */
+
+@media (max-width: 768px) {
+  .restaurant-card {
+    flex-direction: column;
+  }
+
+  .restaurant-info {
+    width: 100%;
+    display: block !important;
+    grid-template-columns: none;
+  }
+}
+
+.restaurant-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.restaurant-list {
+  padding: 0 24px;
+}
+
+.restaurant-card {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 32px;
+  padding: 12px;
+  border: 1px solid #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.restaurant-card img {
+  width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.restaurant-info {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  gap: 8px;
+}
+
+.view-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.view-button-container button {
+  border-radius: 20px;
+}
+
+.restaurant-rating {
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  gap: 8px;
+  margin-top: 8px;
+}
