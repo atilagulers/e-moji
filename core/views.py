@@ -11,12 +11,10 @@ from .models import User, Restaurant
 # Create your views here.
 
 def index(request):
+    restaurants = Restaurant.objects.all()
+
     return render(request, "core/index.html",{
-        "restaurants": [
-            {"id": 1, "name": "McDonald's"},
-            {"id": 2, "name": "Burger King"},
-            {"id": 3, "name": "KFC"}
-        ]
+        "restaurants": restaurants
     })
 
 
@@ -83,7 +81,6 @@ def create_restaurant(request):
         delivery_fee = request.POST["delivery_fee"]
         opening_time = request.POST["opening_time"]
         closing_time = request.POST["closing_time"]
-        rating = request.POST["rating"]
         type = request.POST["type"]
 
         # Create new restaurant
@@ -93,10 +90,10 @@ def create_restaurant(request):
             delivery_fee=delivery_fee,
             opening_time=opening_time,
             closing_time=closing_time,
-            rating=rating,
             type=type
         )
         restaurant.save()
+        restaurant.owners.add(request.user)
         return redirect('index')
     else:
         types = [(choice.value) for choice in Restaurant.RestaurantType]
@@ -104,3 +101,11 @@ def create_restaurant(request):
         return render(request, "core/create_restaurant.html", {
             "types": types
         })
+
+def my_restaurants(request):
+    restaurants = Restaurant.objects.filter(owners=request.user)
+    return render(request, "core/my_restaurants.html", {
+        "restaurants": restaurants
+    })
+
+

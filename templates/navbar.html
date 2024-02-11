@@ -7,6 +7,10 @@
 				<a class="btn btn-link" href="{% url 'logout' %}">Logout</a>
 				<a class="btn btn-link" href="{% url 'index' %}">Home</a>
 				<a class="btn btn-link" href="{% url 'create_restaurant' %}">Create Restaurant</a>
+				{% if user.restaurants.all %}
+				<a class="btn btn-link" href="{% url 'my_restaurants' %}">My Restaurants</a>
+				{% endif %}
+		
 			{% else %}
 				<a class="btn btn-link" href="{% url 'login' %}">Login</a>
 				<a class="btn btn-link" href="{% url 'register' %}">Register</a>

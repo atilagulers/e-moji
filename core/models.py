@@ -3,8 +3,18 @@ from django.db import models
 from enum import Enum
 
 class User(AbstractUser):
-    restaurants = models.ManyToManyField("Restaurant", blank=True, default=[], related_name="users")
+    pass
 
+
+RESTAURANT_TYPE_IMAGES = {
+    'Fast Food': 'fast_food.avif',
+    'Casual Dining': 'casual_dining.jpg',
+    'Fine Dining': 'fine_dining.jpg',
+    'Cafe': 'cafe.jpg',
+    'Bar': 'bar.jpg',
+    'Food Truck': 'food_truck.jpg',
+    'Pizzeria': 'pizzeria.jpeg',
+}
 
 
 class Restaurant(models.Model):
@@ -17,7 +27,7 @@ class Restaurant(models.Model):
         FOOD_TRUCK = "Food Truck"
         PIZZERIA = "Pizzeria"
 
-
+    owners = models.ManyToManyField(User, related_name="restaurants")
     name = models.CharField(max_length=100)
     type = models.CharField(
         max_length=100,
@@ -34,9 +44,36 @@ class Restaurant(models.Model):
     )
     opening_time = models.TimeField()
     closing_time = models.TimeField()
-    rating = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def get_image_url(self):
+        return RESTAURANT_TYPE_IMAGES.get(self.type)
+
+    def __str__(self):
+        return self.name
+
+
+class Menu(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="menus")
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.restaurant.name}"
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="reviews")
+    rating = models.IntegerField()
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.username} reviewed {self.restaurant.name} with a {self.rating} star rating"
