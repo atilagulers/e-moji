@@ -13,5 +13,6 @@ urlpatterns = [
     path("restaurants/create", views.create_restaurant, name="create_restaurant"),
     path("restaurants/<int:restaurant_id>", views.restaurant_view, name="restaurants"),
     path('restaurants/<int:restaurant_id>/menu', views.menu_view, name='menu_view'),
+    path('restaurants/<int:restaurant_id>/menu/add-item', views.add_menu_item, name='add_menu_item'),
     #path("menus/<int:menu_id>", views.menu_view, name="menus"),
 ]
