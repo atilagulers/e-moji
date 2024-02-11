@@ -1,14 +1,24 @@
+<style>
+	@media (max-width: 768px) {
+		.nav-container {
+			flex-direction: column;
+		}
+
+	}
+</style>
+
 <nav>
 	<div class="nav-container">
 		<h3 id="brand">E-Moji</h3>
 	
 		<div class="nav-links">
 			{% if user.is_authenticated %}
-				<a class="btn btn-link" href="{% url 'logout' %}">Logout</a>
+			
 				<a class="btn btn-link" href="{% url 'index' %}">Home</a>
 				<a class="btn btn-link" href="{% url 'create_restaurant' %}">Create Restaurant</a>
 				{% if user.restaurants.all %}
 				<a class="btn btn-link" href="{% url 'my_restaurants' %}">My Restaurants</a>
+				<a class="btn btn-link" href="{% url 'logout' %}">Logout</a>
 				{% endif %}
 		
 			{% else %}

@@ -1,3 +1,6 @@
+html {
+}
+
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -70,9 +73,13 @@ body {
   }
 
   .restaurant-info {
-    width: 100%;
+    width: 100% !important;
     display: block !important;
     grid-template-columns: none;
+  }
+
+  .restaurant-card img {
+    width: 100% !important;
   }
 }
 
@@ -114,12 +121,14 @@ body {
 
 .view-button-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 8px;
 }
 
 .view-button-container button {
+  min-width: 150px;
   border-radius: 20px;
 }
 

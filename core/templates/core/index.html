@@ -31,16 +31,5 @@
 
 
 {% block javascript %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const viewButtons = document.querySelectorAll('.view-btn');
 
-				viewButtons.forEach(button => {
-						button.onclick = function() {
-								const restaurantId = button.dataset.restaurantId;
-								window.location.href = `/restaurants/${restaurantId}`;
-						}
-				});
-    });
-</script>
 {% endblock %}
