@@ -4,7 +4,6 @@ from enum import Enum
 
 class User(AbstractUser):
     restaurants = models.ManyToManyField("Restaurant", blank=True, related_name="users")
-    pass
 
 
 
