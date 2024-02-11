@@ -40,7 +40,7 @@
 							<p>🏷️ Min. Order: $12 | Delivery Fee: $2</p>
 						</div>
 						<div class="view-button-container">
-							<button class="btn btn-danger">View Menu</button>
+							<button class="btn btn-danger view-btn" data-restaurant-id="{{ restaurant.id }}">View Restaurant</button>
 						</div>
 					</div>
 				
@@ -48,4 +48,20 @@
 				{% endfor %}
 			</div>
 		</div>
+{% endblock %}
+
+
+{% block javascript %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const viewButtons = document.querySelectorAll('.view-btn');
+
+				viewButtons.forEach(button => {
+						button.onclick = function() {
+								const restaurantId = button.dataset.restaurantId;
+								window.location.href = `/restaurants/${restaurantId}`;
+						}
+				});
+    });
+</script>
 {% endblock %}

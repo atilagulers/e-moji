@@ -13,7 +13,11 @@ from django.contrib.auth.hashers import check_password
 
 def index(request):
     return render(request, "core/index.html",{
-        "restaurants": ["McDonald's", "Burger King", "KFC"]
+        "restaurants": [
+            {"id": 1, "name": "McDonald's"},
+            {"id": 2, "name": "Burger King"},
+            {"id": 3, "name": "KFC"}
+        ]
     })
 
 
@@ -65,3 +69,35 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+
+def restaurant_view(request, restaurant_id):
+    return render(request, "core/restaurant.html", {
+        "restaurant_id": restaurant_id
+    })
+
+
+def create_restaurant(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        min_order = request.POST["min_order"]
+        delivery_fee = request.POST["delivery_fee"]
+        opening_time = request.POST["opening_time"]
+        closing_time = request.POST["closing_time"]
+        rating = request.POST["rating"]
+        type = request.POST["type"]
+
+        # Create new restaurant
+        restaurant = Restaurant(
+            name=name,
+            min_order=min_order,
+            delivery_fee=delivery_fee,
+            opening_time=opening_time,
+            closing_time=closing_time,
+            rating=rating,
+            type=type
+        )
+        restaurant.save()
+        return redirect('index')
+    else:
+        return render(request, "core/create_restaurant.html")
