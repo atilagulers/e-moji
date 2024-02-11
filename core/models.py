@@ -3,7 +3,7 @@ from django.db import models
 from enum import Enum
 
 class User(AbstractUser):
-    restaurants = models.ManyToManyField("Restaurant", blank=True, related_name="users")
+    restaurants = models.ManyToManyField("Restaurant", blank=True, default=[], related_name="users")
 
 
 
