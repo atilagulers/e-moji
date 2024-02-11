@@ -4,8 +4,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
-from .models import User
-from django.contrib.auth.hashers import check_password
+from .models import User, Restaurant
 
 
 
@@ -100,4 +99,8 @@ def create_restaurant(request):
         restaurant.save()
         return redirect('index')
     else:
-        return render(request, "core/create_restaurant.html")
+        types = [(choice.value) for choice in Restaurant.RestaurantType]
+        
+        return render(request, "core/create_restaurant.html", {
+            "types": types
+        })
