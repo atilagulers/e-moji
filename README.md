@@ -24,3 +24,15 @@ and filter the restaurants according to this query. As i remember we've never do
 
 I figured out by myself all of them. When i start project i thought how can i make it more scalable
 and i found all of the solutions. I think it was more complex then before we've done.
+
+### File Structure
+* components/: Contains HTML templates for different components of the app such as the restaurant list (my_restaurants.html), the individual restaurant view (restaurant.html), and review submissions (reviews.html). 
+* core/: Houses the main Django app with views (views.py), URL dispatchers (urls.py), models (models.py), forms, and tests (tests.py). 
+* static/: Stores static files like CSS, JavaScript, and image assets. Inside the images folder, restaurant-related images are kept. 
+* templates/: Includes base HTML (base.html) and navigation bar template (navbar.html) which are extended by other templates. 
+* emoji-project/: The main project directory with settings and root URL configurations. 
+
+### Running the Application
+
+1. Execute python manage.py runserver from the terminal in the project directory. 
+2. Open a web browser and navigate to localhost:8000 to access the application.
