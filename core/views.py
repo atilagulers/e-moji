@@ -69,8 +69,12 @@ def logout_view(request):
 
 
 def restaurant_view(request, restaurant_id):
+    restaurant = Restaurant.objects.get(pk=restaurant_id)
+    menu = restaurant.menu
+
     return render(request, "core/restaurant.html", {
-        "restaurant_id": restaurant_id
+        "restaurant": restaurant,
+        "menu": menu
     })
 
 
