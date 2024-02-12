@@ -1,2 +1,3 @@
 # e-moji
-Your Virtual Food Ordering Experience 🍔📱
+
+A Virtual Restaurant Reviewing App 🍔📱

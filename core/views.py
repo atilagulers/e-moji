@@ -12,8 +12,13 @@ from django.db.models import Avg
 # Create your views here.
 
 def index(request):
+    selected_types = request.GET.getlist('type')
     restaurants = Restaurant.objects.all()
 
+    if selected_types:
+        restaurants = restaurants.filter(type__in=selected_types)
+    
+    
     return render(request, "core/index.html",{
         "restaurants": restaurants
     })

@@ -8,11 +8,8 @@ class User(AbstractUser):
 
 RESTAURANT_TYPE_IMAGES = {
     'Fast Food': 'fast_food.avif',
-    'Casual Dining': 'casual_dining.jpg',
-    'Fine Dining': 'fine_dining.jpg',
-    'Cafe': 'cafe.jpg',
-    'Bar': 'bar.jpg',
-    'Food Truck': 'food_truck.jpg',
+    'Cafe': 'cafe.avif',
+    'Bar': 'bar.jpeg',
     'Pizzeria': 'pizzeria.jpeg',
 }
 

@@ -4,24 +4,31 @@
 		<h2>Restaurants</h2>
 		<div class="restaurant-content-wrapper">
 			<div class="filters-container">
-				<ul>
-					<li>
-						<input type="checkbox" id="checkbox1" name="checkbox1" checked />
-    				<label for="checkbox1">🍔🍔🍔🍔</label>
-					</li>
-					<li>
-						<input type="checkbox" id="checkbox2" name="checkbox2"  />
-    				<label for="checkbox2">🍕🍕🍕🍕</label>
-					</li>
-					<li>
-						<input type="checkbox" id="checkbox3" name="checkbox3"  />
-    				<label for="checkbox3">🍟🍟🍟🍟</label>
-					</li>
-					<li>
-						<input type="checkbox" id="checkbox4" name="checkbox4"  />
-    				<label for="checkbox4">🌮🌮🌮🌮</label>
-					</li>
-				</ul>
+				<form action="{% url 'index' %}" method="get">
+					{% csrf_token %}
+					<ul>
+						<li>
+							<input type="checkbox" id="Fast Food" name="type" value="Fast Food" />
+							<label for="Fast Food">🍔 Fast Food</label>
+						</li>
+						<li>
+							<input type="checkbox" id="Cafe" name="type" value="Cafe" />
+							<label for="Cafe">☕ Cafe</label>
+						</li>
+						<li>
+							<input type="checkbox" id="Bar" name="type" value="Bar" />
+							<label for="Bar">🍸 Bar</label>
+						</li>
+						<li>
+							<input type="checkbox" id="Pizzeria" name="type" value="Pizzeria" />
+							<label for="Pizzeria">🍕 Pizzeria</label>
+						</li>
+						<li>
+							<input type="submit" value="Reset" class="btn btn-outline-primary" />
+							<input type="submit" value="Filter" class="btn btn-primary" />
+						</li>
+					</ul>
+				</form>
 			</div>
 
 			{% include "components/restaurant_list.html" %}
