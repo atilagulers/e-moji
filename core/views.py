@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from .models import User, Restaurant, Menu, MenuItem, Review
+from django.db.models import Avg
 
 
 
@@ -70,11 +71,13 @@ def logout_view(request):
 
 def restaurant_view(request, restaurant_id):
     restaurant = Restaurant.objects.get(pk=restaurant_id)
+    avg_rating = Review.objects.filter(restaurant=restaurant).aggregate(Avg('rating'))['rating__avg']
     menu = restaurant.menu
 
     return render(request, "core/restaurant.html", {
         "restaurant": restaurant,
-        "menu": menu
+        "menu": menu,
+        "avg_rating": avg_rating
     })
 
 
@@ -155,7 +158,6 @@ def add_menu_item(request, restaurant_id):
             description=description
         )
         item.save()
-        print(item)
         return redirect('menu_view', restaurant_id=restaurant_id)
     else:
         return redirect('menu_view', restaurant_id=restaurant_id)

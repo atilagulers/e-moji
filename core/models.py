@@ -49,6 +49,12 @@ class Restaurant(models.Model):
 
     def get_image_url(self):
         return RESTAURANT_TYPE_IMAGES.get(self.type)
+    
+    def get_avg_rating(self):
+        reviews = self.reviews.all()
+        if len(reviews) == 0:
+            return 0
+        return round(sum([review.rating for review in reviews]) / len(reviews), 2)
 
     def __str__(self):
         return self.name
