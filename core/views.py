@@ -4,7 +4,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
-from .models import User, Restaurant, Menu, MenuItem
+from .models import User, Restaurant, Menu, MenuItem, Review
 
 
 
@@ -160,4 +160,27 @@ def add_menu_item(request, restaurant_id):
     else:
         return redirect('menu_view', restaurant_id=restaurant_id)
     
-#Cheese with potatos
+
+def reviews_view(request, restaurant_id):
+    restaurant = Restaurant.objects.get(pk=restaurant_id)
+    reviews = Review.objects.filter(restaurant=restaurant)
+    
+    return render(request, "core/reviews.html", {
+        "restaurant": restaurant,
+        "reviews": reviews
+    })
+
+def add_review(request, restaurant_id):
+    if request.method == "POST":
+        restaurant = Restaurant.objects.get(pk=restaurant_id)
+        rating = request.POST["rating"]
+        comment = request.POST["comment"]
+        review = Review(
+            user=request.user,
+            restaurant=restaurant,
+            rating=rating,
+            comment=comment
+        )
+        review.save()
+    return redirect('reviews_view', restaurant_id=restaurant_id)
+   
